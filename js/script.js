@@ -61,7 +61,9 @@ const addSearchListeners = list => {
          e.target.tagName === "IMG") {
          // Call to check for new search matches when user submits query
          getSearchQuery(list);
-      }
+
+         studentSearch.children[0].value = "";
+      };
    });
 
    // Listen for keyup events on INPUT element inside '.student-search' 
@@ -69,7 +71,7 @@ const addSearchListeners = list => {
       if (e.target.tagName === "INPUT") {
          // Call to check for new search matches when user updates the input value
          getSearchQuery(list);
-      }
+      };
    });
 };
 
@@ -91,13 +93,13 @@ const getSearchQuery = list => {
       if (firstName.indexOf(query) !== -1 ||
          lastName.indexOf(query) !== -1) {
          matchedStudentsList.push(list[student]);
-      }
-   }
+      };
+   };
 
    // Call to render page(s) and pagination again with 'matchedStudentsList'
    showPage(matchedStudentsList, 1);
    addPagination(matchedStudentsList);
-}
+};
 
 const addPagination = list => {
    const pageCount = Math.ceil(list.length / itemsPerPage);
@@ -116,11 +118,11 @@ const addPagination = list => {
          `;
 
          linkList.insertAdjacentHTML("beforeend", button);
-      }
+      };
 
       // Call to add click listeners on buttons inside pagination
       addPaginationListeners(linkList);
-   }
+   };
 };
 
 // Listen for click events on pagination buttons
@@ -137,7 +139,7 @@ const addPaginationListeners = pagination => {
 
          // Call to render the page the user requested
          showPage(data, e.target.innerText);
-      }
+      };
    });
 };
 
