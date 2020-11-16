@@ -84,15 +84,15 @@ const getSearchQuery = list => {
 
    const matchedStudentsList = [];
 
-   for (let student in list) {
+   for (let student of list) {
       // Get lowercased first and last name from current student
-      const firstName = list[student].name.first.toLowerCase();
-      const lastName = list[student].name.last.toLowerCase();
+      const firstName = student.name.first.toLowerCase();
+      const lastName = student.name.last.toLowerCase();
 
       // Check if query matches first or last name from current student
       if (firstName.indexOf(query) !== -1 ||
          lastName.indexOf(query) !== -1) {
-         matchedStudentsList.push(list[student]);
+         matchedStudentsList.push(student);
       };
    };
 
@@ -121,12 +121,12 @@ const addPagination = list => {
       };
 
       // Call to add click listeners on buttons inside pagination
-      addPaginationListeners(linkList);
+      addPaginationListeners(linkList, list);
    };
 };
 
 // Listen for click events on pagination buttons
-const addPaginationListeners = pagination => {
+const addPaginationListeners = (pagination, list) => {
    let activeButton = document.querySelectorAll("[type='button']")[0];
 
    activeButton.classList.add("active");
@@ -138,7 +138,7 @@ const addPaginationListeners = pagination => {
          activeButton = e.target;
 
          // Call to render the page the user requested
-         showPage(data, e.target.innerText);
+         showPage(list, e.target.innerText);
       };
    });
 };
