@@ -50,6 +50,7 @@ const addSearchBar = () => {
    `;
 
    header.insertAdjacentHTML("beforeend", searchBar);
+   addSearchListeners(data);
 };
 
 const addSearchListeners = list => {
@@ -147,4 +148,3 @@ const addPaginationListeners = (pagination, list) => {
 showPage(data, 1);
 addPagination(data);
 addSearchBar();
-addSearchListeners(data);
